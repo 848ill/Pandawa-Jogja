@@ -1,0 +1,112 @@
+============================================================
+🚀 DEMO DETEKSI ANOMALI TRANSAKSI METAVERSE
+   FAST VERSION UNTUK PRESENTASI
+============================================================
+
+1. MEMUAT DATA (SAMPLING FOR DEMO)...
+----------------------------------------
+✅ Dataset sample loaded: 10000 baris, 14 kolom
+
+2. GAMBARAN UMUM DATA
+------------------------------
+📊 Shape: (10000, 14)
+📋 Columns: ['timestamp', 'hour_of_day', 'sending_address', 'receiving_address', 'amount', 'transaction_type', 'location_region', 'ip_prefix', 'login_frequency', 'session_duration', 'purchase_pattern', 'age_group', 'risk_score', 'anomaly']
+🏷️ Target distribution:
+anomaly
+low_risk         0.807
+moderate_risk    0.110
+high_risk        0.083
+Name: proportion, dtype: float64
+
+3. FEATURE ENGINEERING...
+------------------------------
+✅ Temporal features created: day_of_week, month, is_weekend
+
+4. PREPROCESSING...
+------------------------------
+✅ Features shape: (10000, 15)
+✅ Target classes: ['high_risk' 'low_risk' 'moderate_risk']
+✅ Categorical features simplified untuk demo speed
+
+5. TRAIN-TEST SPLIT...
+------------------------------
+📊 Training set: 8000 samples
+📊 Test set: 2000 samples
+
+6. APPLYING PREPROCESSING...
+------------------------------
+✅ Processed training shape: (8000, 34)
+✅ Processed test shape: (2000, 34)
+
+7. CLASS DISTRIBUTION SEBELUM SMOTE:
+----------------------------------------
+  moderate_risk (label 2): 880 sampel (11.0%)
+  low_risk (label 1): 6454 sampel (80.7%)
+  high_risk (label 0): 666 sampel (8.3%)
+
+8. APPLYING SMOTENC...
+------------------------------
+📊 Categorical indices: 26 features
+✅ SMOTENC applied successfully!
+
+9. CLASS DISTRIBUTION SETELAH SMOTE:
+----------------------------------------
+  moderate_risk (label 2): 6454 sampel (33.3%)
+  low_risk (label 1): 6454 sampel (33.3%)
+  high_risk (label 0): 6454 sampel (33.3%)
+
+10. TRAINING RANDOM FOREST MODEL...
+----------------------------------------
+✅ Random Forest model trained!
+
+11. MODEL EVALUATION...
+------------------------------
+
+📊 CLASSIFICATION REPORT:
+               precision    recall  f1-score   support
+
+    high_risk       1.00      1.00      1.00       166
+     low_risk       1.00      1.00      1.00      1614
+moderate_risk       1.00      1.00      1.00       220
+
+     accuracy                           1.00      2000
+    macro avg       1.00      1.00      1.00      2000
+ weighted avg       1.00      1.00      1.00      2000
+
+
+📊 CONFUSION MATRIX:
+[[ 166    0    0]
+ [   0 1614    0]
+ [   0    0  220]]
+
+🎯 TOP 10 FEATURE IMPORTANCE:
+  risk_score: 0.3672
+  cat_1: 0.0979
+  login_frequency: 0.0874
+  cat_12: 0.0741
+  cat_13: 0.0639
+  cat_14: 0.0634
+  session_duration: 0.0428
+  cat_3: 0.0373
+  cat_15: 0.0366
+  cat_0: 0.0343
+
+12. DEMO PREDICTIONS...
+------------------------------
+
+🎯 DEMO PREDICTION 1:
+   Transaction: transfer €150.0
+   Risk Score: 15.0
+   📊 Predicted: low_risk
+   📊 Confidence: 1.00
+
+🎯 DEMO PREDICTION 2:
+   Transaction: phishing €1500.0
+   Risk Score: 95.0
+   📊 Predicted: high_risk
+   📊 Confidence: 0.88
+
+============================================================
+🎉 DEMO COMPLETED SUCCESSFULLY!
+   Ready untuk presentasi!
+============================================================
